@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sort and Search
+{% endblock %}
+
+{% block main %}
+
+  <form action="/sortSearch" method="post" required>
+        <div class="form-inline">
+          <input id='inp' type="radio" class="form-control" name="genArr" value = "g" required onclick=myFunc2()>&nbsp; Generate Array
+          &emsp;
+          <input id='sr' class="form-control" name="startRange" placeholder="Start Range: " type="number" min="1" required disabled/>
+          &emsp;
+          <input id='er'class="form-control" name="endRange" placeholder="End Range: " type="number" min="1" required disabled/>
+          &emsp;
+          <input id='num' class="form-control" name="items" placeholder="Number of items: " type="number" min="1" required disabled/>
+        </div>
+        <br>
+        <br>
+        <div class="form-inline">
+            <input id='inp' type="radio" class="form-control" name="genArr" value = "f" required onclick=myFunc1()>&nbsp; Upload File
+            &emsp;
+            <div class="form-group">
+              <input id = 'f' type="file" class="form-control-file border" name="file" required disabled>
+            </div>
+        </div>
+        <br>
+        <br>
+        <input id='search' class="form-control" name="searchNum" placeholder="Number: " type="number" min="1" required />
+        <br>
+        <br>
+        <div class="form-check-inline">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="sort" value = "b" required>Bubble Sort
+          </label>
+        </div>
+        <div class="form-check-inline">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="sort" value = "m" required>Merge Sort
+          </label>
+        </div>
+        <br>
+        <br>
+        <div class="form-inline">
+            <input type="radio" class="form-check-input" name="search" value = "b" required>Binary Search
+            &emsp;
+            <input type="radio" class="form-check-input" name="search" value = "bt" required>Binary Search Tree
+            &emsp;
+            <input type="radio" class="form-check-input" name="search" value = "l" required>Linear Search
+        </div>
+        <br>
+        <br>
+        <button class="btn btn-primary" type="submit" name='submit'>Submit</button>
+  </form>
+
+  <script>
+  function myFunc1(){
+    document.getElementById('f').removeAttribute('disabled');
+    document.getElementById('sr').disabled = true;
+    document.getElementById('er').disabled = true;
+    document.getElementById('num').disabled = true;
+  }
+  function myFunc2(){
+    document.getElementById('f').disabled = true;
+    document.getElementById('sr').removeAttribute('disabled');
+    document.getElementById('er').removeAttribute('disabled');
+    document.getElementById('num').removeAttribute('disabled');
+  }
+  </script>
+
+  <p3 style="line-height:5">
+    <br>
+    <h5>
+    [GENERATED ARRAY]
+  </h5>
+    {{ arr }}
+  </p3>
+  <br>
+  <p6 style="line-height:5">
+    <br>
+    <h5>[SORTED ARRAY]</h5>
+    {{ sortedArr }}
+  </p6>
+  <br>
+  <p4 style="line-height:5">
+    <br>
+    <h5>[ITEM FOUND]</h5>
+    {{ itemFound }}
+  </p4>
+  <br>
+  <p5 style="line-height:5">
+    <br>
+    <h5>[SORT EXECUTION TIME]</h5>
+    {{ sortTime }} milliseconds
+  </p5>
+  <br>
+  <p5 style="line-height:5">
+    <br>
+    <h5>[SEARCH EXECUTION TIME]</h5>
+    {{ searchTime }} milliseconds
+  </p5>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sort
+{% endblock %}
+
+{% block main %}
+
+  <form action="/sort" method="post" required>
+        <div class="form-inline">
+          <input id='inp' type="radio" class="form-control" name="genArr" value = "g" required onclick=myFunc2()>&nbsp; Generate Array
+          &emsp;
+          <input id='sr' class="form-control" name="startRange" placeholder="Start Range: " type="number" min="1" required disabled/>
+          &emsp;
+          <input id='er'class="form-control" name="endRange" placeholder="End Range: " type="number" min="1" required disabled/>
+          &emsp;
+          <input id='num' class="form-control" name="items" placeholder="Number of items: " type="number" min="1" required disabled/>
+        </div>
+        <br>
+        <br>
+        <div class="form-inline">
+            <input id='inp' type="radio" class="form-control" name="genArr" value = "f" required onclick=myFunc1()>&nbsp; Upload File
+            &emsp;
+            <div class="form-group">
+              <input id = 'f' type="file" class="form-control-file border" name="file" required disabled>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-inline">
+          <input type="radio" class="form-control" name="ascdesc" value = "Asc" required >&nbsp; Ascending &emsp;
+          <input type="radio" class="form-control" name="ascdesc" value = "Desc" required >&nbsp; Descending
+        </div>
+        <br>
+        <br>
+        <div>
+          <button class="btn btn-primary" type="submit" name='submit' value='Bubble Sort'>Bubble Sort</button>
+          &emsp;
+          <button class="btn btn-primary" type="submit" name='submit' value='Merge Sort'>Merge Sort</button>
+      </div>
+  </form>
+
+  <script>
+  function myFunc1(){
+    document.getElementById('f').removeAttribute('disabled');
+    document.getElementById('sr').disabled = true;
+    document.getElementById('er').disabled = true;
+    document.getElementById('num').disabled = true;
+  }
+  function myFunc2(){
+    document.getElementById('f').disabled = true;
+    document.getElementById('sr').removeAttribute('disabled');
+    document.getElementById('er').removeAttribute('disabled');
+    document.getElementById('num').removeAttribute('disabled');
+  }
+  </script>
+
+  <p3 style="line-height:3">
+    <br>
+    <h5>
+    [GENERATED ARRAY]
+  </h5>
+    {{ arr }}
+  </p3>
+  <br>
+  <p4 style="line-height:3">
+    <br>
+    <h5>[SORTED ARRAY]</h5>
+    {{ sortedArr }}
+  </p4>
+  <br>
+  <p5 style="line-height:3">
+    <br>
+    <h5>[EXECUTION TIME]</h5>
+    {{ endTime }} milliseconds
+  </p5>
+
+{% endblock %}
